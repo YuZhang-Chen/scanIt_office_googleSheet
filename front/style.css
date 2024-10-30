@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+h1 img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* 簽到名單內容區域 */
+#content {
+    margin-top: 10px;
+}
+
+.student-entry {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e6f7ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.student-entry:hover {
+    background-color: #b3e0ff;
+}
+
+.student-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #0050b3;
+}
+
+.timestamp {
+    color: #666;
+    font-size: 0.9em;
+    text-align: right;
+}
