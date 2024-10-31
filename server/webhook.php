@@ -13,21 +13,29 @@ if ($data) {
     $time = $dataGroup['time'];
 
     if ($id !== "Device ID" && $time !== "time") {
-        $response = [
-            "id" => $id,
-            "time" => $time
-        ];
-        echo json_encode($response);
+        $id_list = json_decode(file_get_contents('./Id.json'), true) ?? [];
+        if (!in_array($id, $id_list)) {
+            $id_list[] = $id;
+            file_put_contents('./Id.json', json_encode($id_list, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+            $response = [
+                "id" => $id,
+                "time" => $time
+            ];
+            echo json_encode($response);
+            
+            $wsData = json_encode($response);
+            $wsUrl = 'ws://localhost:8080'; // 替換為您的 WebSocket 伺服器 URL
         
-        $wsData = json_encode($response);
-        $wsUrl = 'ws://localhost:8080'; // 替換為您的 WebSocket 伺服器 URL
-    
-        // 使用 WebSocket 客戶端傳送資料
-        $ws = new Client($wsUrl);
-        $ws->send($wsData);
-        $ws->close();
+            // 使用 WebSocket 客戶端傳送資料
+            $ws = new Client($wsUrl);
+            $ws->send($wsData);
+            $ws->close();
+        }
+
     } else {
         file_put_contents('data_log.json', json_encode([], JSON_PRETTY_PRINT));
+        file_put_contents('./Id.json', json_encode([], JSON_PRETTY_PRINT));
         echo json_encode(["message" => "Invalid data, JSON cleared."]);
     }
 
