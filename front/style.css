@@ -33,28 +33,48 @@ h1 img {
     margin-top: 10px;
 }
 
+/* 第二行的整體排版樣式 */
 .student-entry {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #e6f7ff;
-    padding: 10px;
+    padding: 10px 15px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     transition: background-color 0.3s;
+    font-size: 1.1em;
 }
 
 .student-entry:hover {
     background-color: #b3e0ff;
 }
 
-.student-name {
+/* ID 的樣式（框起來，靠左） */
+.student-title {
+    background-color: #0050b3;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
     font-weight: bold;
-    font-size: 1.2em;
-    color: #0050b3;
+    font-size: 1em;
+    margin: 5px;
 }
 
+/* 名字的樣式（靠左，緊接 ID） */
+.student-name {
+    font-weight: bold;
+    color: #0050b3;
+    font-size: 1.2em;
+    flex: 1;
+    margin-left: 10px;
+}
+
+/* 時間的樣式（靠右） */
 .timestamp {
     color: #666;
     font-size: 0.9em;
+    text-align: right;
+    white-space: nowrap; /* 防止換行 */
     text-align: right;
 }
