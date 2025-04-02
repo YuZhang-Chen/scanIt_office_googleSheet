@@ -27,7 +27,7 @@ async function handle(data) {
                 const title = element[1];
                 const name = element[0];
                 target = `
-                <div class="student-entry">
+                <div class="student-entry highlight">
                 <div class="info">
                     <span class="student-title">${title}</span>
                     <span class="student-name">${name}</span>
@@ -38,7 +38,7 @@ async function handle(data) {
             </div>
             <br>
                 `;
-
+                
                 // 構建要發送到伺服器的數據
                 const data = {
                     title: element[1],
@@ -67,7 +67,13 @@ async function handle(data) {
 
         // 如果找到匹配的人員，將 HTML 內容添加到頁面
         if (target) {
-            document.getElementById('content').innerHTML += `${target}`;
+            document.getElementById('content').innerHTML = `${target}` + document.getElementById('content').innerHTML;
+            const targetElement = document.querySelector('.student-entry.highlight');
+
+            setTimeout(() => {
+                targetElement.classList.remove('highlight');
+            }, 3000);
+
         } else {
             console.warn(`No matching student found for ID: ${id}`);
         }

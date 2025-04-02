@@ -5,16 +5,16 @@ async function getData() {
         const response = await fetch('../server/data_log.json');
         const data = await response.json();
         // console.log('Loaded Data:', data); //顯示data_log.json已存在的資料;
-        data.forEach(element => {                  
+        data.reverse().forEach(element => {                  
             const target = `
             <div class="student-entry">
             <div class="info">
-                <span class="student-title">${element['title']}</span>
-                <span class="student-name">${element['name']}</span>
+            <span class="student-title">${element['title']}</span>
+            <span class="student-name">${element['name']}</span>
             </div>
             <span class="timestamp">${element['time']}</span>
         </div>
-        <br>`
+        <br>`;
             document.getElementById('content').innerHTML += target;
         });
     } catch (error) {

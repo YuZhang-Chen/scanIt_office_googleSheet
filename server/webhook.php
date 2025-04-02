@@ -27,17 +27,25 @@ if ($data) {
                 "id" => $id,
                 "time" => $time
             ];
-            echo json_encode($response);
+            
             
             // 構建 WebSocket 數據並發送
-            $wsData = json_encode($response);
-            $wsUrl = 'ws://localhost:8080'; // 替換為您的 WebSocket 伺服器 URL
-        
-            // 使用 WebSocket 客戶端傳送資料
-            $ws = new Client($wsUrl);
-            $ws->send($wsData);
-            $ws->close();
+        } else {
+            $response = [
+                "id" => null,
+                "time" => null
+            ];
         }
+        
+        echo json_encode($response);
+        
+        $wsData = json_encode($response);
+        $wsUrl = 'ws://localhost:8080'; // 替換為您的 WebSocket 伺服器 URL
+    
+        // 使用 WebSocket 客戶端傳送資料
+        $ws = new Client($wsUrl);
+        $ws->send($wsData);
+        $ws->close();
 
     } else {
         // 如果數據無效，清空 JSON 文件並返回消息

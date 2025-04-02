@@ -1,6 +1,12 @@
 async function getKey() {
-    const response = await fetch('../server/apikey.json');
+    const response = await fetch('../server/getEnv.php');
     const config = await response.json();
+
+    // 檢查是否成功獲取環境變數
+    if (!config.studentApiKey || !config.studentSheetId || !config.studentRange) {
+        throw new Error("Missing required environment variables from server");
+    }
+
     const studentApiKey = config.studentApiKey;
     const studentSheetId = config.studentSheetId;
     const studentRange = config.studentRange;

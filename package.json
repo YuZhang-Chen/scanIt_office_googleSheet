@@ -1,0 +1,9 @@
+{
+  "name": "googlesheet",
+  "version": "1.0.0",
+  "description": "Google Sheet API integration",
+  "main": "server/index.js",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
